@@ -190,8 +190,12 @@ pub fn trim_to_content(path: &str) -> Result<bool, String> {
         }
     }
 
-    if start < 0.05 && end > dur - 0.05 {
-        return Ok(false); // no meaningful black at either end
+    // Trim even a single black frame at the start (a 24fps frame is ~0.042s):
+    // with looping, one black frame shows at t=0 and at every loop wrap.
+    let trims_lead = start > 0.005;
+    let trims_tail = end < dur - 0.02;
+    if !trims_lead && !trims_tail {
+        return Ok(false); // no black at either end
     }
     let new_dur = end - start;
     if new_dur < 0.3 {
