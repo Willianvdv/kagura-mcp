@@ -1,0 +1,17 @@
+[package]
+name = "kagura-mcp"
+version = "0.1.0"
+edition = "2021"
+description = "Kagura — an MCP server that overlays green-screen anime dance clips onto videos via ffmpeg"
+license = "MIT"
+
+[[bin]]
+name = "kagura-mcp"
+path = "src/main.rs"
+
+[dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+[profile.release]
+opt-level = 2

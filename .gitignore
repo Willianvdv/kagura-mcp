@@ -1,0 +1,7 @@
+/target
+# Downloaded clips can be large and have messy licensing — don't commit them,
+# nor the local manifest that points at them (presets rebuild it on install).
+/assets/*.mp4
+/assets/*.webm
+/assets/*.mov
+/assets/characters.json
